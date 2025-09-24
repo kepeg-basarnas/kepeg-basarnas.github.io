@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard Kepegawaian</title>
+  <title>Dashboard Karir Kepegawaian</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <style>
@@ -108,7 +108,7 @@
           <span class="d-none d-sm-inline">BASARNAS</span>
         </a>
       </div>
-      <span class="text-white fw-bold fs-5 dashboard-title text-center mx-auto">Dashboard Kepegawaian</span>
+      <span class="text-white fw-bold fs-5 dashboard-title text-center mx-auto">Dashboard Karir Kepegawaian</span>
     </div>
   </nav>
 
@@ -116,7 +116,12 @@
   <div class="sidebar" id="sidebarMenu">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="tab" href="#kenaikan">
+        <a class="nav-link show active" data-bs-toggle="tab" href="#utama">
+          <i class="bi bi-house-door-fill"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " data-bs-toggle="tab" href="#kenaikan">
           <i class="bi bi-arrow-up-circle"></i> Kenaikan Jenjang
         </a>
       </li>
@@ -141,14 +146,41 @@
   <!-- Konten -->
   <div class="content">
     <div class="text-center mb-3">
-      <h6 class="countdown-timer fw-semibold text-danger"></h6>
+      <h4 class="countdown-timer fw-semibold text-danger"></h4>
     </div>
 
     <div class="tab-content">
       <!-- Kenaikan Jenjang -->
-      <div class="tab-pane fade show active" id="kenaikan">
+      <div class="tab-pane fade show active" id="utama">
+          <div class="container mt-3 pt-3">
+            <center>
+                <img src="https://basarnasweb.proposaldigital.com/images/logo-basarnas-img.png" width="120px" alt="">
+            </center>
+            <div class="card mt-3">
+              <div class="card-body text-bold">
+                  <h5><i class="bi bi-book"></i> Selamat Datang di Dashboard Karir Kepegawaian BASARNAS</h5>
+                  <p>Aplikasi ini dirancang untuk mempermudah proses pendataan dan pengusulan karir ASN, yang meliputi:</p>
+                  <ol>
+                    <li>Kenaikan Jenjang Jabatan Fungsional</li>
+                    <li>Alih Kategori Jabatan</li>
+                    <li>Perpindahan dari Jabatan Lain</li>
+
+                  </ol>
+        
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+       <div class="tab-pane fade " id="kenaikan">
         <h5><i class="bi bi-arrow-up-circle"></i> Pendataan Kenaikan Jenjang</h5>
         <p>Menampilkan data pegawai yang mengajukan kenaikan jenjang.</p>
+          <div style="width:100%;height:100%;overflow:hidden;">
+            <iframe data-tally-src="https://tally.so/r/3XXxy4" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0" title="Form Tally"></iframe>
+          </div>
+        </div>
       </div>
 
       <!-- Alih Kategori -->
@@ -163,14 +195,8 @@
         <!-- Kenaikan Jenjang -->
         <div class="tab-pane fade show active" id="kenaikan">
            <h5><i class="bi bi-briefcase"></i> Pendataan Perpindahan Jabatan</h5>
-        <p>Menampilkan data pegawai yang berpindah jabatan.</p>
+           <p>Menampilkan data pegawai yang berpindah jabatan.</p>
           <!-- Google Form Embed -->
-         
-          <div style="width:100%;height:100%;overflow:hidden;">
-            <iframe data-tally-src="https://tally.so/r/wQGWW8" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0" title="Form Tally"></iframe>
-          </div>
-        </div>
-
       </div>
 
       <!-- Pencarian -->
@@ -224,7 +250,7 @@
     }
 
     // Countdown ke tanggal tertentu
-    const targetDate = new Date("2025-09-22T00:00:00").getTime();
+    const targetDate = new Date("2025-09-30T00:00:00").getTime();
     const timerEl = document.querySelector(".countdown-timer");
 
     function updateTimer() {
