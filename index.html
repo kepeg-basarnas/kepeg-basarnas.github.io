@@ -147,12 +147,89 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 700px) {
-      .sidebar { width: 180px; }
+
+    /* ✅✅✅ TAMBAHAN RESPONSIVE MOBILE (TIDAK MERUBAH TAMPILAN) ✅✅✅ */
+    @media (max-width: 768px) {
+
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+      }
+      .sidebar h2 { display: none; }
+      .sidebar button {
+        text-align: center;
+        font-size: 0.9em;
+        flex: 1;
+      }
+
+      .dashboard {
+        padding-top: 20px;
+        gap: 10px;
+      }
+
+      .card {
+        width: 45%; /* 2 kolom */
+        padding: 15px;
+      }
+
+      header h1 {
+        font-size: 1.4em;
+        text-align: center;
+      }
+
+      .search-container input {
+        width: 90%;
+      }
+
+      .result-card {
+        width: 90%;
+      }
+
+      iframe {
+        height: 70vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .card {
+        width: 100%; /* 1 kolom */
+      }
+
+      header img {
+        height: 45px;
+      }
+
+      header h1 {
+        font-size: 1.2em;
+      }
+
+      .sidebar button {
+        padding: 8px;
+        font-size: 0.8em;
+      }
+
+      .result-card {
+        width: 95%;
+      }
+
+      .search-container input {
+        width: 95%;
+      }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- ✅ HTML TETAP, TIDAK ADA PERUBAHAN -->
+
   <div class="sidebar">
     <h2>Menu</h2>
     <button onclick="showSection('dashboardSection')">📊 Dashboard</button>
@@ -192,7 +269,6 @@
   </div>
 
   <script>
-    // Ganti dengan URL Web App kamu (tidak perlu ubah kalau tidak buat deployment baru)
     const API_URL = "https://script.google.com/macros/s/AKfycby0W0_0TIS4syfbTO6MRh1TeLC-VjALZQbSjY-zltdtPsJGdkr5CkE9E16BKpaZUCSPZw/exec";
 
     function showSection(id) {
@@ -245,7 +321,6 @@
           return "-";
         };
 
-        // --- Perbaikan untuk status proses ---
         const statusValue = get("Status Proses", "status proses", "Status", "status");
         const status = String(statusValue || "-").toLowerCase();
 
@@ -277,5 +352,6 @@
 
     loadDashboard();
   </script>
+
 </body>
 </html>
