@@ -4,223 +4,342 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Usulan Mutasi - Basarnas</title>
+
   <style>
+    :root {
+      --orange: #ff6a00;
+      --orange-dark: #1a1a1a;
+      --dark: #f9f6ee;
+      --dark-light: #242424;
+      --gray: #e5e5e5;
+      --white: #ffffff;
+    }
+
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(to right, #ff9800, #fb8c00);
-      color: #333;
+      background: var(--dark);
       display: flex;
-      min-height: 100vh;
+      height: 100vh;
+      color: var(--white);
+      overflow: hidden;
     }
 
-    /* Sidebar */
+    /* ✅ SIDEBAR */
     .sidebar {
-      width: 250px;
-      background: #ef6c00;
+      width: 260px;
+      background: var(--orange);
       color: white;
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      padding: 25px 20px;
+      box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      z-index: 990;
     }
-    .sidebar h2 { text-align: center; margin-bottom: 20px; font-size: 1.4em; }
-    .sidebar button {
-      background: none; border: none; color: white;
-      font-size: 1.1em; padding: 10px; text-align: left;
-      cursor: pointer; border-radius: 5px;
-      transition: background 0.3s ease;
-    }
-    .sidebar button:hover { background: rgba(255,255,255,0.2); }
 
-    /* Main Area */
-    .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
-
-    header {
-      background-color: rgba(0,0,0,0.1);
-      color: white; padding: 20px;
-      display: flex; align-items: center;
-      justify-content: center; gap: 20px; flex-wrap: wrap;
-    }
-    header img { height: 60px; }
-    header h1 { font-size: 1.8em; margin: 0; }
-
-    /* Dashboard Cards */
-    .dashboard {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; gap: 20px;
-      padding: 40px 20px 20px;
-    }
-    .card {
-      background: white; border-radius: 10px;
-      padding: 20px; width: 200px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    .sidebar-logo {
       text-align: center;
-      transition: transform 0.2s ease;
-    }
-    .card:hover { transform: scale(1.05); }
-    .card h2 { font-size: 2.5em; margin: 0; }
-    .card p { margin: 5px 0 0; color: #777; }
-    .total { border-top: 5px solid #e65100; }
-    .diterima { border-top: 5px solid #43a047; }
-    .proses { border-top: 5px solid #fbc02d; }
-    .ditolak { border-top: 5px solid #e53935; }
-    .selesai { border-top: 5px solid #6a1b9a; }
-
-    /* Sections */
-    .section { padding: 30px; text-align: center; }
-    iframe {
-      border: none; width: 100%; height: 80vh;
-      border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      background: white;
+      margin-bottom: 30px;
     }
 
-    /* Search Section */
-    .search-container {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 10px;
+    .sidebar h2 {
+      text-align: center;
+      margin: 10px 0 25px;
+      font-size: 1.3em;
     }
-    .search-container input {
-      padding: 10px; width: 300px; border-radius: 8px;
-      border: none; font-size: 1em;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .search-container button {
-      padding: 10px 25px; background-color: #ef6c00;
-      color: white; border: none; border-radius: 8px;
-      font-size: 1em; cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .search-container button:hover { background-color: #d84315; }
 
-    /* Result Card */
-    .result-card {
-      background: white;
-      color: #333;
-      border-radius: 12px;
-      padding: 25px;
-      margin-top: 20px;
-      width: 360px;
+    .menu-btn {
+      padding: 12px 15px;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      font-size: 1.05em;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
       text-align: left;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      animation: fadeIn 0.4s ease;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .result-card h3 {
-      margin-top: 0;
-      color: #ef6c00;
+
+    .menu-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateX(5px);
+    }
+
+    /* ✅ MAIN */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--dark);
+      overflow-y: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ✅ HEADER */
+    header {
+      background: linear-gradient(to right, #ff6a00, #ff822e);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.8em;
+      color: white;
+      letter-spacing: 1px;
+    }
+
+    /* ✅ DASHBOARD CARDS */
+    .dashboard {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-gap: 25px;
+    }
+
+.card {
+  background: linear-gradient(
+      145deg,
+      rgba(255, 120, 40, 0.92),
+      rgba(150, 60, 0, 0.92)
+    );
+
+  padding: 28px;
+  border-radius: 22px;
+  text-align: left;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+
+  backdrop-filter: blur(6px);
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.15),
+    0 12px 28px rgba(0,0,0,0.25);
+
+  transition: 0.35s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.18),
+      transparent 70%
+    );
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.05),
+      rgba(0, 0, 0, 0.15)
+    );
+  mix-blend-mode: overlay;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.25),
+    0 16px 35px rgba(0,0,0,0.35);
+}
+
+.card h2 {
+  font-size: 3em;
+  margin: 10px 0;
+  font-weight: 700;
+  color: #1a1a1a; 
+}
+
+.card p {
+  margin: 0;
+  color: #f7dfca;
+  font-size: 1.15em;
+  letter-spacing: 0.2px;
+}
+
+    /* ✅ IFRAME */
+    iframe {
+      width: 95%;
+      height: 80vh;
+      background: var(--white);
+      border-radius: 15px;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      border: none;
+    }
+
+    .section {
+      padding: 25px;
+    }
+
+    /* ✅ SEARCH BAR */
+    .search-container {
       text-align: center;
+      margin-top: 20px;
     }
-    .result-card p {
-      margin: 6px 0;
+
+    .search-container input {
+      padding: 12px;
+      width: 300px;
+      border-radius: 10px;
+      border: none;
+      background: #333;
+      color: white;
       font-size: 1em;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 4px;
     }
+
+    .search-container button {
+      padding: 10px 25px;
+      background: var(--orange);
+      border: none;
+      margin-left: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      color: white;
+      transition: 0.2s;
+    }
+
+    .search-container button:hover {
+      background: var(--orange-dark);
+    }
+
+    .result-card {
+      margin: 20px auto;
+      background: var(--dark-light);
+      padding: 25px;
+      width: 350px;
+      border-radius: 18px;
+      color: white;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .result-card h3 {
+      text-align: center;
+      color: var(--orange);
+      margin-bottom: 15px;
+    }
+
     .status-label {
-      display: inline-block;
-      padding: 5px 12px;
-      border-radius: 20px;
+      padding: 5px 10px;
+      border-radius: 10px;
       color: white;
       font-weight: bold;
-      font-size: 0.9em;
-      text-transform: uppercase;
     }
-    .status-diterima { background-color: #43a047; }
-    .status-proses { background-color: #fbc02d; color: #333; }
-    .status-ditolak { background-color: #e53935; }
-    .status-selesai { background-color: #6a1b9a; }
 
-    /* Loading spinner */
+    .status-diterima { background: #ff8a00; }
+    .status-proses { background: #ffca28; color: #000; }
+    .status-ditolak { background: #ef5350; }
+    .status-selesai { background: #4caf50; }
+
     .spinner {
-      display: inline-block;
-      width: 28px;
-      height: 28px;
-      border: 3px solid rgba(255,255,255,0.3);
-      border-top: 3px solid white;
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top: 4px solid var(--orange);
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      margin-top: 10px;
+      margin: 10px auto;
     }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
+    #judulHalaman,
+    #judulHalaman1,
+    #judulHalaman2 {
+      color: #000;
+    }
 
-    /* ✅✅✅ TAMBAHAN RESPONSIVE MOBILE (TIDAK MERUBAH TAMPILAN) ✅✅✅ */
+    /* ✅ HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      position: absolute;
+      left: 15px;
+      top: 18px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .hamburger div {
+      width: 28px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+
+    /* ✅ RESPONSIVE MOBILE */
     @media (max-width: 768px) {
-
       body {
         flex-direction: column;
+        overflow-y: auto;
+      }
+
+      .hamburger {
+        display: block;
       }
 
       .sidebar {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 10px;
+        position: fixed;
+        left: -270px;
+        top: 0;
+        height: 100%;
       }
-      .sidebar h2 { display: none; }
-      .sidebar button {
-        text-align: center;
-        font-size: 0.9em;
-        flex: 1;
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      header {
+        padding-left: 60px;
       }
 
       .dashboard {
-        padding-top: 20px;
-        gap: 10px;
-      }
-
-      .card {
-        width: 45%; /* 2 kolom */
-        padding: 15px;
-      }
-
-      header h1 {
-        font-size: 1.4em;
-        text-align: center;
-      }
-
-      .search-container input {
-        width: 90%;
-      }
-
-      .result-card {
-        width: 90%;
-      }
-
-      iframe {
-        height: 70vh;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
     }
 
-    @media (max-width: 480px) {
-
-      .card {
-        width: 100%; /* 1 kolom */
-      }
-
-      header img {
-        height: 45px;
-      }
-
+    @media (max-width: 500px) {
       header h1 {
         font-size: 1.2em;
       }
 
-      .sidebar button {
-        padding: 8px;
-        font-size: 0.8em;
+      iframe {
+        height: 70vh;
+        width: 100%;
       }
 
-      .result-card {
-        width: 95%;
-      }
-
-      .search-container input {
-        width: 95%;
+      .card h2 {
+        font-size: 2em;
       }
     }
   </style>
@@ -228,40 +347,59 @@
 
 <body>
 
-  <!-- ✅ HTML TETAP, TIDAK ADA PERUBAHAN -->
+  <!-- ✅ HAMBURGER BUTTON -->
+  <button class="hamburger" onclick="toggleSidebar()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </button>
 
+  <!-- ✅ SIDEBAR -->
   <div class="sidebar">
     <h2>Menu</h2>
-    <button onclick="showSection('dashboardSection')">📊 Dashboard</button>
-    <button onclick="showSection('inputSection')">➕ Input Usulan</button>
-    <button onclick="showSection('searchSection')">🔍 Search</button>
+
+    <button class="menu-btn" onclick="showSection('dashboardSection'); toggleSidebar();">
+      Dashboard
+    </button>
+
+    <button class="menu-btn" onclick="showSection('inputSection'); toggleSidebar();">
+      Input Usulan
+    </button>
+
+    <button class="menu-btn" onclick="showSection('searchSection'); toggleSidebar();">
+      Search
+    </button>
   </div>
 
+  <!-- ✅ MAIN -->
   <div class="main">
     <header>
-      <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/5a/Logo_Basarnas.png/1024px-Logo_Basarnas.png" alt="Logo Basarnas" />
-      <h1>Dashboard Usulan Mutasi - BASARNAS</h1>
+      <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/5a/Logo_Basarnas.png/1024px-Logo_Basarnas.png" />
+      <h1 id="judulHalaman1"> DASHBOARD USULAN MUTASI - BASARNAS</h1>
     </header>
 
+    <!-- ✅ DASHBOARD -->
     <div id="dashboardSection" class="section">
       <div class="dashboard">
-        <div class="card total"><h2 id="total">0</h2><p>Total Usulan</p></div>
-        <div class="card diterima"><h2 id="diterima">0</h2><p>Usulan Diterima</p></div>
-        <div class="card proses"><h2 id="proses">0</h2><p>Usulan Proses</p></div>
-        <div class="card ditolak"><h2 id="ditolak">0</h2><p>Usulan Ditolak</p></div>
-        <div class="card selesai"><h2 id="selesai">0</h2><p>Usulan Selesai</p></div>
+        <div class="card"><h2 id="total">0</h2><p>Total Usulan</p></div>
+        <div class="card"><h2 id="diterima">0</h2><p>Usulan Diterima</p></div>
+        <div class="card"><h2 id="proses">0</h2><p>Usulan Proses</p></div>
+        <div class="card"><h2 id="ditolak">0</h2><p>Usulan Ditolak</p></div>
+        <div class="card"><h2 id="selesai">0</h2><p>Usulan Selesai</p></div>
       </div>
     </div>
 
+    <!-- ✅ INPUT -->
     <div id="inputSection" class="section" style="display:none;">
-      <h2>Input Usulan Mutasi</h2>
+      <h2 id="judulHalaman">Input Usulan Mutasi</h2>
       <iframe src="https://tally.so/r/mJyv2R"></iframe>
     </div>
 
+    <!-- ✅ SEARCH -->
     <div id="searchSection" class="section" style="display:none;">
-      <h2>Cari Usulan Mutasi</h2>
+      <h2 id="judulHalaman2">Cari Usulan Mutasi</h2>
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Masukkan NIP..." />
+        <input id="searchInput" placeholder="Masukkan NIP..." />
         <button onclick="handleSearch()">Cari</button>
         <div id="searchResult"></div>
       </div>
@@ -272,23 +410,25 @@
     const API_URL = "https://script.google.com/macros/s/AKfycby0W0_0TIS4syfbTO6MRh1TeLC-VjALZQbSjY-zltdtPsJGdkr5CkE9E16BKpaZUCSPZw/exec";
 
     function showSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
+      document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+
+    function toggleSidebar() {
+      document.querySelector(".sidebar").classList.toggle("active");
     }
 
     async function loadDashboard() {
       try {
         const res = await fetch(API_URL);
         const json = await res.json();
-        if (json.dashboard) {
-          document.getElementById("total").innerText = json.dashboard.total;
-          document.getElementById("diterima").innerText = json.dashboard.diterima;
-          document.getElementById("proses").innerText = json.dashboard.proses;
-          document.getElementById("ditolak").innerText = json.dashboard.ditolak;
-          document.getElementById("selesai").innerText = json.dashboard.selesai;
-        }
+        document.getElementById("total").innerText = json.dashboard.total;
+        document.getElementById("diterima").innerText = json.dashboard.diterima;
+        document.getElementById("proses").innerText = json.dashboard.proses;
+        document.getElementById("ditolak").innerText = json.dashboard.ditolak;
+        document.getElementById("selesai").innerText = json.dashboard.selesai;
       } catch (e) {
-        console.error("Gagal load dashboard:", e);
+        console.error(e);
       }
     }
 
@@ -296,10 +436,7 @@
       const nip = document.getElementById("searchInput").value.trim();
       const result = document.getElementById("searchResult");
 
-      if (!nip) {
-        result.innerHTML = "<p style='color:white;'>Masukkan NIP terlebih dahulu.</p>";
-        return;
-      }
+      if (!nip) return result.innerHTML = "<p>Masukkan NIP dulu.</p>";
 
       result.innerHTML = '<div class="spinner"></div>';
 
@@ -308,45 +445,33 @@
         const json = await res.json();
 
         if (!json.found) {
-          result.innerHTML = "<p style='color:white;'>❌ Data dengan NIP tersebut tidak ditemukan.</p>";
+          result.innerHTML = "<p style='color: black;'>❌ Tidak ditemukan.</p>";
           return;
         }
 
         const d = json.data;
-        const get = (...keys) => {
-          for (let k of keys) {
-            const val = d[k];
-            if (val !== undefined && val !== "") return val;
-          }
-          return "-";
-        };
+        const get = (...keys) => keys.map(k => d[k]).find(v => v) || "-";
+        const status = String(get("Status Proses", "status")).toLowerCase();
 
-        const statusValue = get("Status Proses", "status proses", "Status", "status");
-        const status = String(statusValue || "-").toLowerCase();
-
-        let statusClass = "";
-        if (status.includes("terima")) statusClass = "status-diterima";
-        else if (status.includes("proses")) statusClass = "status-proses";
-        else if (status.includes("tolak")) statusClass = "status-ditolak";
-        else if (status.includes("selesai")) statusClass = "status-selesai";
+        let cls = "";
+        if (status.includes("terima")) cls = "status-diterima";
+        else if (status.includes("proses")) cls = "status-proses";
+        else if (status.includes("tolak")) cls = "status-ditolak";
+        else if (status.includes("selesai")) cls = "status-selesai";
 
         result.innerHTML = `
           <div class="result-card">
             <h3>Hasil Pencarian</h3>
-            <p><strong>NIP:</strong> ${get("NIP", "nip")}</p>
-            <p><strong>Nama:</strong> ${get("Nama Lengkap", "Nama", "nama")}</p>
-            <p><strong>Jenis Mutasi:</strong> ${get("Jenis Mutasi", "jenis_mutasi", "Mutasi")}</p>
-            <p><strong>Unit Kerja:</strong> ${get("Unit Kerja", "unit_kerja", "Satker")}</p>
-            <p><strong>Jabatan:</strong> ${get("Jabatan Saat Ini", "jabatan", "Posisi")}</p>
-            <p><strong>Status Proses:</strong> 
-              <span class="status-label ${statusClass}">
-                ${statusValue || "-"}
-              </span>
-            </p>
+            <p><strong>NIP:</strong> ${get("NIP")}</p>
+            <p><strong>Nama:</strong> ${get("Nama Lengkap")}</p>
+            <p><strong>Jenis Mutasi:</strong> ${get("Jenis Mutasi")}</p>
+            <p><strong>Unit Kerja:</strong> ${get("Unit Kerja")}</p>
+            <p><strong>Jabatan:</strong> ${get("Jabatan Saat Ini")}</p>
+            <p><strong>Status:</strong> <span class="status-label ${cls}">${get("Status Proses")}</span></p>
           </div>
         `;
       } catch (e) {
-        result.innerHTML = `<p style="color:white;">⚠️ Terjadi kesalahan: ${e.message}</p>`;
+        result.innerHTML = `<p>Error: ${e.message}</p>`;
       }
     }
 
