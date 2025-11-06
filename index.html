@@ -342,6 +342,76 @@
         font-size: 2em;
       }
     }
+	
+	/* ✅ PERBAIKAN JUDUL INPUT & SEARCH AGAR TIDAK TERPOTONG DI HP */
+@media (max-width: 768px) {
+  #judulHalaman,
+  #judulHalaman2 {
+    margin-left: 15px;
+    display: block;
+  }
+
+  /* Saat sidebar terbuka, tetap beri jarak aman */
+  .sidebar.active ~ .main h2 {
+    margin-left: 20px;
+  }
+}
+/* ✅ Perbaikan agar judul & hasil search tidak terpotong di HP kecil */
+@media (max-width: 600px) {
+
+  .search-container {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .search-container input {
+    width: 100% !important;
+  }
+
+  #searchResult {
+    width: 100%;
+  }
+
+  .result-card {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  #judulHalaman2 {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: block;
+  }
+}
+
+/* ✅ Tambah spasi antara input NIP dan tombol CARI */
+.search-container button {
+  margin-left: 8px; /* spasi kecil */
+}
+
+/* ✅ Fix responsif agar tidak terpotong di HP */
+@media (max-width: 600px) {
+  .search-container {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .search-container input {
+    width: calc(100% - 90px); /* input tetap muat, tombol tetap kecil */
+    box-sizing: border-box;
+  }
+
+  #searchResult,
+  .result-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #judulHalaman2 {
+    padding-left: 15px;
+  }
+}
+
   </style>
 </head>
 
@@ -436,7 +506,7 @@
       const nip = document.getElementById("searchInput").value.trim();
       const result = document.getElementById("searchResult");
 
-      if (!nip) return result.innerHTML = "<p>Masukkan NIP dulu.</p>";
+      if (!nip) return result.innerHTML = "<p style='color:black;'>Silahkan Masukkan NIP</p>";
 
       result.innerHTML = '<div class="spinner"></div>';
 
